@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchDataFromApi } from "../utils/api";
 
-const useFetch = (url) => {
+const useFetch = (url: string) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -16,7 +16,7 @@ const useFetch = (url) => {
         setLoading(null);
         setData(res);
       })
-      .catch((err) => {
+      .catch(() => {
         setLoading(null);
         setError("Something went wrong!");
       });

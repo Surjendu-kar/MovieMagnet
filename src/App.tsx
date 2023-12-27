@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { fetchDataFromApi } from "./utils/api";
-import { useSelector, useDispatch } from "react-redux";
+// import { useSelector } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { getApiConfiguration } from "./store/homeSlice";
 
 import Header from "./components/header/Header";
@@ -15,7 +16,7 @@ import PageNotFound from "./pages/404/PageNotFound";
 
 function App() {
   const dispatch = useDispatch(); // used to call hook
-  const { url } = useSelector((state) => state.home); // // used to get particular key like url,genres
+  // const { url } = useSelector((state) => state.home); // // used to get particular key like url,genres
   // console.log('url',url);
 
   useEffect(() => {
