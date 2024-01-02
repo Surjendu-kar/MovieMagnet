@@ -1,5 +1,5 @@
 import "./style.scss";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
@@ -14,7 +14,7 @@ import Img from "../lazyLoadImg/Img";
 import CircleRating from "../circleRating.tsx/CircleRating";
 import Genres from "../genres/Genres";
 
-function Carousel({ data, loading, endPoint }) {
+function Carousel({ data, loading, endPoint, title }) {
   const carouselContainer = useRef<HTMLDivElement>(null);
   // use to select or catch any dom/node/div etc where in js we use querySelector.
   const { url } = useSelector((state) => state.home);
@@ -51,63 +51,67 @@ function Carousel({ data, loading, endPoint }) {
   };
   return (
     <div className="carousel">
-      <ContentWrapper>
-        <BsFillArrowLeftCircleFill
-          className="carouselLeftNav arrow"
-          onClick={() => navigation("left")}
-        />
-        <BsFillArrowRightCircleFill
-          className="carouselRighttNav arrow"
-          onClick={() => navigation("right")}
-        />
+      {data?.length > 0 && (
+        <ContentWrapper>
+          {title && <div className="carouselTitle">{title}</div>}
+          <BsFillArrowLeftCircleFill
+            className="carouselLeftNav arrow"
+            onClick={() => navigation("left")}
+          />
+          <BsFillArrowRightCircleFill
+            className="carouselRighttNav arrow"
+            onClick={() => navigation("right")}
+          />
 
-        {!loading ? (
-          <div ref={carouselContainer} className="carouselItems">
-            {data?.map((item) => {
-              const posterUrl = item.poster_path
-                ? url.poster + item.poster_path // img url have some condition that will add before the item.poster_path that condition we have stored into url that'why here we use url
-                : PosterFallback;
-              const movieRate = item.vote_average.toFixed(1); // if 6.466 then 6.6
-              return (
-                <div
-                  className="carouselItem"
-                  key={item.id}
-                  onClick={() =>
-                    navigate(`${item.media_type} || ${endPoint}/${item.id}`)
-                  }
-                >
-                  <div className="posterBlock">
-                    <Img src={posterUrl} />
-                    <CircleRating
-                      rating={movieRate === "0.0" ? "8.4" : movieRate}
-                    />
-                    <Genres data={item.genre_ids.slice(0, 2)} />
-                  </div>
+          {!loading ? (
+            <div ref={carouselContainer} className="carouselItems">
+              {data?.map((item) => {
+                const posterUrl = item.poster_path
+                  ? url.poster + item.poster_path // img url have some condition that will add before the item.poster_path that condition we have stored into url that'why here we use url
+                  : PosterFallback;
+                const movieRate = item.vote_average.toFixed(1); // if 6.466 then 6.6
 
-                  <div className="textBlock">
-                    <span className="title">{item.title || item.name}</span>
-                  </div>
+                return (
+                  <div
+                    className="carouselItem"
+                    key={item.id}
+                    onClick={() => {
+                      navigate(`/${item.media_type || endPoint}/${item.id}`);
+                    }}
+                  >
+                    <div className="posterBlock">
+                      <Img src={posterUrl} />
+                      <CircleRating
+                        rating={movieRate === "0.0" ? "8.4" : movieRate}
+                      />
+                      <Genres data={item.genre_ids.slice(0, 2)} />
+                    </div>
 
-                  <div className="textBlock">
-                    <span className="date">
-                      {dayjs(item.release_date).format("MMM D, YYYY")}
-                    </span>
+                    <div className="textBlock">
+                      <span className="title">{item.title || item.name}</span>
+                    </div>
+
+                    <div className="textBlock">
+                      <span className="date">
+                        {dayjs(item.release_date).format("MMM D, YYYY")}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div className="loadingSkeleton">
-            {skItem()}
-            {skItem()}
-            {skItem()}
-            {skItem()}
-            {skItem()}
-            {skItem()}
-          </div>
-        )}
-      </ContentWrapper>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="loadingSkeleton">
+              {skItem()}
+              {skItem()}
+              {skItem()}
+              {skItem()}
+              {skItem()}
+              {skItem()}
+            </div>
+          )}
+        </ContentWrapper>
+      )}
     </div>
   );
 }

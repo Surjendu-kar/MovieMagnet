@@ -52,7 +52,6 @@ function App() {
     data.map(({ genres }) => {
       return genres.map((item) => (allGens[item.id] = item));
     });
-    // console.log(allGens);
     dispatch(getGenres(allGens));
   };
 
@@ -62,11 +61,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:mediaType/:id" element={<Details />} />
-        <Route
-          path="
-        "
-          element={<SearchResult />}
-        />
+        <Route path="/search/:query" element={<SearchResult />} />
         <Route path="/explore/:mediaType" element={<Explore />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
