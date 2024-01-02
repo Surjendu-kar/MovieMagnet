@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { fetchDataFromApi } from "./utils/api";
-// import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getApiConfiguration, getGenres } from "./store/homeSlice";
 
@@ -13,6 +12,10 @@ import Details from "./pages/details/Details";
 import Explore from "./pages/explore/Explore";
 import SearchResult from "./pages/searchResult/SearchResult";
 import PageNotFound from "./pages/404/PageNotFound";
+interface Genre {
+  id: number;
+  name: string;
+}
 
 function App() {
   const dispatch = useDispatch(); // used to call hook
@@ -40,7 +43,7 @@ function App() {
   const genresCall = async () => {
     const promises = [];
     const endPoints = ["tv", "movie"];
-    const allGens = {};
+    const allGens: { [key: number]: Genre } = {};
 
     endPoints.forEach((url) => {
       promises.push(fetchDataFromApi(`/genre/${url}/list`, ""));
@@ -50,7 +53,7 @@ function App() {
     // console.log(data);
 
     data.map(({ genres }) => {
-      return genres.map((item) => (allGens[item.id] = item));
+      return genres.map((item: Genre) => (allGens[item.id] = item));
     });
     dispatch(getGenres(allGens));
   };
