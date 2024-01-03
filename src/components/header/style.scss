@@ -30,13 +30,13 @@
   .logo {
     cursor: pointer;
     img {
-      height: 150px;
-      width: 175px;
+      height: 115px;
+      width: 120px;
       animation: zoomEffect 5s infinite;
 
       @include md {
-        height: 225px;
-        width: 255px;
+        height: 150px;
+        width: 155px;
         animation: zoomEffect 6s infinite;
       }
     }
