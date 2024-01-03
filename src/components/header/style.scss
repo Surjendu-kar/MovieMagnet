@@ -31,9 +31,29 @@
     cursor: pointer;
     img {
       height: 150px;
-      width: 155px;
+      width: 175px;
+      animation: zoomEffect 5s infinite;
+
+      @include md {
+        height: 225px;
+        width: 255px;
+        animation: zoomEffect 6s infinite;
+      }
     }
   }
+
+  @keyframes zoomEffect {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
   .menuItems {
     list-style-type: none;
     display: none;
@@ -57,7 +77,7 @@
       }
       cursor: pointer;
       &:hover {
-        color: var(--orange);
+        color: var(--pink);
       }
     }
   }

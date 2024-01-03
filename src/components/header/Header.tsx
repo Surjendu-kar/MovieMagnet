@@ -6,7 +6,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import "./style.scss";
 
-import logo from "../../assets/MovieMagnet-logo.png";
+import logo from "../../assets/MOvie_magnet-removebg-preview.png";
 import ContentWrapper from "../contentWrapper/ContentWrapper";
 
 const Header = () => {

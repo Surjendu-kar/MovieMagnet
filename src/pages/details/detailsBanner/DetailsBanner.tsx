@@ -78,10 +78,12 @@ const DetailsBanner = ({ video, crew }) => {
 
                   <div className="right">
                     <div className="title">
-                      {`${data.name || data.title} (${dayjs(
-                        data?.release_date
-                      ).format("YYYY")})`}
+                      {`${data.name || data.title} `}
+                      <span style={{ opacity: 0.60 }}>
+                        ({dayjs(data?.release_date).format("YYYY")})
+                      </span>
                     </div>
+
                     <div className="subtitle">{data.tagline}</div>
 
                     <Genres data={_genres} />

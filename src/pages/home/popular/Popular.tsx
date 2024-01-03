@@ -3,13 +3,22 @@ import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
 import SwitchTabs from "../../../components/switchTabs/SwitchTabs";
 import useFetch from "../../../hooks/useFetch";
 import Carousel from "../../../components/carousel/Carousel";
+interface MovieData {
+  results: {
+    adult: boolean;
+    backdrop_path: string;
+    genre_ids: number[];
+    id: number;
+    original_language: string;
+  }[];
+}
 
 //home -> style.scss
 function Popular() {
   const [endPoint, setEndPoint] = useState("movie");
-  const { data, loading } = useFetch(`/${endPoint}/popular`);
+  const { data, loading } = useFetch<MovieData>(`/${endPoint}/popular`);
 
-  const onTabChange = (tab) => {
+  const onTabChange = (tab: string) => {
     setEndPoint(tab === "Movies" ? "movie" : "tv");
   };
 
@@ -19,7 +28,12 @@ function Popular() {
         <span className="carouselTitle">What's Popular</span>
         <SwitchTabs data={["Movies", "Tv Shows"]} onTabChange={onTabChange} />
       </ContentWrapper>
-      <Carousel data={data?.results} loading={loading} endPoint={endPoint} />
+      <Carousel
+        data={data?.results}
+        loading={loading}
+        endPoint={endPoint}
+        title={""}
+      />
     </div>
   );
 }
