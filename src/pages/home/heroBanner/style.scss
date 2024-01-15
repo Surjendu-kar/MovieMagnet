@@ -47,21 +47,22 @@
     max-width: 800px;
     margin: 0 auto;
     .title {
+      // font-family: "Times New Roman", Times, serif;
       font-size: 50px;
       font-weight: 700;
       margin-bottom: 10px;
       @include md {
-        // greater than 768
         margin-bottom: 0;
         font-size: 90px;
       }
     }
     .subTitle {
-      font-size: 18px;
+      opacity: 0.9;
+      font-size: 13px;
       font-weight: 500;
       margin-bottom: 40px;
       @include md {
-        font-size: 24px;
+        font-size: 20px;
       }
     }
     .searchInput {
@@ -94,10 +95,10 @@
         border-radius: 0 30px 30px 0;
         font-size: 16px;
         cursor: pointer;
-        @include md{
-            width: 150px;
-            height: 60px;
-            font-size: 18px;
+        @include md {
+          width: 150px;
+          height: 60px;
+          font-size: 18px;
         }
       }
     }
