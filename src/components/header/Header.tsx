@@ -6,8 +6,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import "./style.scss";
 
-import logo from "../../assets/MovieMagnet-logo.png";
 import ContentWrapper from "../contentWrapper/ContentWrapper";
+import LottieAnimation from "../lottieAnimation/LottieAnimation";
 
 const Header = () => {
   const [show, setShow] = useState("top");
@@ -83,7 +83,8 @@ const Header = () => {
     <header className={`header ${mobileMenu && "mobileView"} ${show}`}>
       <ContentWrapper>
         <div className="logo" onClick={() => navigate("/")}>
-          <img src={logo} alt="" />
+          {/* <img src={logo} alt="" /> */}
+          <LottieAnimation />
         </div>
         <ul className="menuItems">
           <li

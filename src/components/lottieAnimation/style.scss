@@ -1,0 +1,14 @@
+.lottie-container {
+    width: 100%; 
+    height: auto; 
+    max-width: 130px; 
+  
+    @media (min-width: 506px) { 
+      max-width: 150px; 
+    }
+  
+    @media (min-width: 992px) { 
+      max-width: 200px; 
+    }
+  }
+  
