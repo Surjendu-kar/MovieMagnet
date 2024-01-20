@@ -1,28 +1,24 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import Lottie from "lottie-web";
 import animationData from "../../assets/Animation - 1705338913045.json";
 import "./style.scss";
 
-class LottieAnimation extends React.Component {
-  private animBox: HTMLDivElement | null = null;
+const LottieAnimation = () => {
+  const animBox = useRef(null);
 
-  componentDidMount() {
-    if (this.animBox) {
+  useEffect(() => {
+    if (animBox.current) {
       Lottie.loadAnimation({
-        container: this.animBox,
+        container: animBox.current,
         animationData: animationData,
         renderer: "svg",
         loop: true,
         autoplay: true,
       });
     }
-  }
+  }, []); // Empty dependency array means this effect will only run once, similar to componentDidMount
 
-  render() {
-    return (
-      <div ref={(ref) => (this.animBox = ref)} className="lottie-container" />
-    );
-  }
-}
+  return <div ref={animBox} className="lottie-container" />;
+};
 
 export default LottieAnimation;
