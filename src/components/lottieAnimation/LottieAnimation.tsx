@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import  { useRef, useEffect } from "react";
 import Lottie from "lottie-web";
 import animationData from "../../assets/Animation - 1705338913045.json";
 import "./style.scss";
